@@ -11,6 +11,20 @@ trait HandlesSettings
 {
     // Settings - Ranking rules
 
+    public function setMaxTotalHits(int $maxTotalHits): array
+    {
+        return $this->http->patch(self::PATH.'/'.$this->uid.'/settings/pagination', [
+            'maxTotalHits' => $maxTotalHits
+        ]);
+    }
+    
+    public function setMaxValuesPerFacet(int $maxValuesPerFacet): array
+    {
+        return $this->http->patch(self::PATH.'/'.$this->uid.'/settings/faceting', [
+            'maxValuesPerFacet' => $maxValuesPerFacet
+        ]);
+    }
+       
     public function getRankingRules(): array
     {
         return $this->http->get(self::PATH.'/'.$this->uid.'/settings/ranking-rules');
